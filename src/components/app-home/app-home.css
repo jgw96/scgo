@@ -1,0 +1,16 @@
+app-home .track ion-label {
+  white-space: normal;
+}
+
+app-home .track ion-label p {
+  white-space: nowrap;
+}
+
+app-home #trackTitle {
+  height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 80%;
+  margin-left: 10px;
+}
