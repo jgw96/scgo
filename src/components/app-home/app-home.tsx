@@ -1,4 +1,4 @@
-import { Component, State, Prop } from '@stencil/core';
+import { Component, Element, State, Prop } from '@stencil/core';
 
 import { getTracks, searchTracks } from '../../helpers/api';
 
@@ -16,6 +16,8 @@ export class AppHome {
   @State() currentPlayingTrack: any = {};
 
   @Prop({ connect: "ion-toast-controller" }) toastCtrl: HTMLIonToastControllerElement;
+
+  @Element() el: HTMLElement;
 
   audioElement: HTMLAudioElement;
   searchBar: HTMLIonSearchbarElement;
@@ -97,11 +99,21 @@ export class AppHome {
     await toast.present();
   }
 
+  async goToFave() {
+    await (this.el.closest('ion-nav') as HTMLIonNavElement).push('fave-page');
+  }
+
   render() {
     return [
       <ion-header>
         <ion-toolbar color="primary">
           <ion-title>SC Go</ion-title>
+
+          <ion-buttons slot="end">
+            <ion-button onClick={() => this.goToFave()} icon-only fill="clear">
+              <ion-icon name="star"></ion-icon>
+            </ion-button>
+          </ion-buttons>
         </ion-toolbar>
         <ion-toolbar color="primary">
           <ion-searchbar onIonInput={() => this.search()} ref={(el: HTMLIonSearchbarElement) => this.searchBar = el}></ion-searchbar>
@@ -112,19 +124,19 @@ export class AppHome {
           {
             this.tracks.map((track) => {
               return (
-                <ion-item onClick={() => this.play(track, track.stream_url)} key={track.id} class="track">
-                  <ion-thumbnail slot="start">
+                <ion-item key={track.id} class="track">
+                  <ion-thumbnail onClick={() => this.play(track, track.stream_url)} slot="start">
                     <ion-img src={track.artwork_url || "https://images.all-free-download.com/images/graphiclarge/geometric_abstract_pattern_colorful_flat_circles_decoration_6835129.jpg"}></ion-img>
                   </ion-thumbnail>
 
-                  <ion-label>
+                  <ion-label onClick={() => this.play(track, track.stream_url)}>
                     <h2>{track.title}</h2>
                     <p>{track.description || "No Description Available"}</p>
                   </ion-label>
 
                   <ion-buttons slot="end">
                     <ion-button color="primary" onClick={() => this.fave(track)} icon-only fill="clear">
-                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-outline"></ion-icon>
                     </ion-button>
                   </ion-buttons>
                 </ion-item>

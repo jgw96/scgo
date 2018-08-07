@@ -98,6 +98,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface FavePage {
+
+    }
+  }
+
+  interface HTMLFavePageElement extends StencilComponents.FavePage, HTMLStencilElement {}
+
+  var HTMLFavePageElement: {
+    prototype: HTMLFavePageElement;
+    new (): HTMLFavePageElement;
+  };
+  interface HTMLElementTagNameMap {
+    'fave-page': HTMLFavePageElement;
+  }
+  interface ElementTagNameMap {
+    'fave-page': HTMLFavePageElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'fave-page': JSXElements.FavePageAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface FavePageAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface MyApp {
 
     }
