@@ -27,6 +27,8 @@ export class AppHome {
     console.log(data);
 
     this.tracks = data;
+
+    this.toastCtrl
   }
 
   async play(track?, url?: string) {
@@ -122,26 +124,41 @@ export class AppHome {
       <ion-content>
         <ion-list>
           {
+            this.tracks.length > 0 &&
             this.tracks.map((track) => {
-              return (
-                <ion-item key={track.id} class="track">
-                  <ion-thumbnail onClick={() => this.play(track, track.stream_url)} slot="start">
-                    <ion-img src={track.artwork_url || "https://images.all-free-download.com/images/graphiclarge/geometric_abstract_pattern_colorful_flat_circles_decoration_6835129.jpg"}></ion-img>
-                  </ion-thumbnail>
+              if (track.artwork_url) {
+                return (
+                  <ion-item key={track.id} class="track">
+                    <ion-thumbnail onClick={() => this.play(track, track.stream_url)} slot="start">
+                      <ion-img src={track.artwork_url} alt={`${track.name} album artwork`}></ion-img>
+                    </ion-thumbnail>
 
-                  <ion-label onClick={() => this.play(track, track.stream_url)}>
-                    <h2>{track.title}</h2>
-                    <p>{track.description || "No Description Available"}</p>
-                  </ion-label>
+                    <ion-label onClick={() => this.play(track, track.stream_url)}>
+                      <h2>{track.title}</h2>
+                      <p>{track.description || "No Description Available"}</p>
+                    </ion-label>
 
-                  <ion-buttons slot="end">
-                    <ion-button color="primary" onClick={() => this.fave(track)} icon-only fill="clear">
-                      <ion-icon name="star-outline"></ion-icon>
-                    </ion-button>
-                  </ion-buttons>
-                </ion-item>
-              )
+                    <ion-buttons slot="end">
+                      <ion-button color="primary" onClick={() => this.fave(track)} icon-only fill="clear">
+                        <ion-icon name="star-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                  </ion-item>
+                )
+              }
             })
+          }
+          {
+            this.tracks.length < 1 &&
+            <ion-item>
+              <ion-thumbnail>
+                <ion-skeleton-text width="30%"></ion-skeleton-text>
+              </ion-thumbnail>
+              <ion-label>
+                <h2><ion-skeleton-text width="40%"></ion-skeleton-text></h2>
+                <p><ion-skeleton-text width="80%"></ion-skeleton-text></p>
+              </ion-label>
+            </ion-item>
           }
         </ion-list>
 

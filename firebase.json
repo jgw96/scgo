@@ -11,6 +11,35 @@
         "source": "**",
         "destination": "/index.html"
       }
+    ],
+    "headers": [
+      {
+        "source": "/build/app/**",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "public, max-age=31536000"
+          }
+        ]
+      },
+      {
+        "source": "sw.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      },
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "</build/app.css>;rel=preload;as=style,</build/app/app.qtijcvxe.js>;rel=preload;as=script,</build/app/kokp3yx5.js>;rel=preload;as=script,</build/app/vcpi1vng.js>;rel=preload;as=script,</build/app/chunk-a000c498.js>;rel=preload;as=script,</build/app/am7jzx95.js>;rel=preload;as=script,</build/app/chunk-f7b6af08.js>;rel=preload;as=script,</build/app/llqdeneu.js>;rel=preload;as=script,</build/app/chunk-619d4736.js>;rel=preload;as=script,</build/app/pvchrlwb.js>;rel=preload;as=script,</build/app/h7lmznjt.js>;rel=preload;as=script,</build/app/lhl1dimn.sc.js>;rel=preload;as=script,</build/app/qfosvvdx.js>;rel=preload;as=script,</build/app/l916r8cp.js>;rel=preload;as=script,</build/app/n2c4ryu2.js>;rel=preload;as=script,</build/app/gesture.js>;rel=preload;as=script,</build/app/tap-click.js>;rel=preload;as=script,</build/app/status-tap.js>;rel=preload;as=script"
+          }
+        ]
+      }
     ]
   }
 }
