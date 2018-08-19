@@ -31,10 +31,6 @@ declare global {
 
     }
 
-    interface AppProfile {
-      'name': string;
-    }
-
     interface FavePage {
 
     }
@@ -54,14 +50,6 @@ declare global {
     var HTMLAppHomeElement: {
       prototype: HTMLAppHomeElement;
       new (): HTMLAppHomeElement;
-    };
-    
-
-    interface HTMLAppProfileElement extends StencilComponents.AppProfile, HTMLStencilElement {}
-
-    var HTMLAppProfileElement: {
-      prototype: HTMLAppProfileElement;
-      new (): HTMLAppProfileElement;
     };
     
 
@@ -93,7 +81,6 @@ declare global {
     interface Element {}
     export interface IntrinsicElements {
     'app-home': JSXElements.AppHomeAttributes;
-    'app-profile': JSXElements.AppProfileAttributes;
     'fave-page': JSXElements.FavePageAttributes;
     'my-app': JSXElements.MyAppAttributes;
     'track-list': JSXElements.TrackListAttributes;
@@ -104,10 +91,6 @@ declare global {
 
     export interface AppHomeAttributes extends HTMLAttributes {
 
-    }
-
-    export interface AppProfileAttributes extends HTMLAttributes {
-      'name'?: string;
     }
 
     export interface FavePageAttributes extends HTMLAttributes {
@@ -126,7 +109,6 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'app-home': HTMLAppHomeElement
-    'app-profile': HTMLAppProfileElement
     'fave-page': HTMLFavePageElement
     'my-app': HTMLMyAppElement
     'track-list': HTMLTrackListElement
@@ -134,7 +116,6 @@ declare global {
 
   interface ElementTagNameMap {
     'app-home': HTMLAppHomeElement;
-    'app-profile': HTMLAppProfileElement;
     'fave-page': HTMLFavePageElement;
     'my-app': HTMLMyAppElement;
     'track-list': HTMLTrackListElement;
