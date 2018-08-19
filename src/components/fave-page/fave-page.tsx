@@ -24,10 +24,10 @@ export class FavePage {
 
   async play(track?, url?: string) {
     this.playing = false;
-    console.log('clicked');
+    ('clicked');
 
     if (url) {
-      console.log(url);
+      (url);
       // if we have a new url switch to it
       this.streamUrl = url;
 
@@ -37,13 +37,13 @@ export class FavePage {
 
       this.audioElement.addEventListener('loadeddata', async () => {
         if (this.audioElement.readyState >= 3) {
-          console.log('playing');
+          ('playing');
           await this.audioElement.play();
           this.playing = true;
         }
       });
     } else {
-      console.log('resuming')
+      ('resuming')
       // if not were paused and just play
       await this.audioElement.play();
       this.playing = true;
@@ -51,13 +51,13 @@ export class FavePage {
   }
 
   async pause() {
-    console.log('pause clicked');
+    ('pause clicked');
     await this.audioElement.pause();
     this.playing = false;
   }
 
   next() {
-    console.log('hello world');
+    ('hello world');
     const randomNumber = Math.random();;
     this.play(this.faveTracks[Math.floor(randomNumber * this.faveTracks.length)], this.faveTracks[Math.floor(randomNumber * this.faveTracks.length)].stream_url);
   }

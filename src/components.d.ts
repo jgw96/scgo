@@ -42,6 +42,10 @@ declare global {
     interface MyApp {
 
     }
+
+    interface TrackList {
+      'tracks': any;
+    }
   }
 
 
@@ -77,6 +81,14 @@ declare global {
     };
     
 
+    interface HTMLTrackListElement extends StencilComponents.TrackList, HTMLStencilElement {}
+
+    var HTMLTrackListElement: {
+      prototype: HTMLTrackListElement;
+      new (): HTMLTrackListElement;
+    };
+    
+
   namespace JSX {
     interface Element {}
     export interface IntrinsicElements {
@@ -84,6 +96,7 @@ declare global {
     'app-profile': JSXElements.AppProfileAttributes;
     'fave-page': JSXElements.FavePageAttributes;
     'my-app': JSXElements.MyAppAttributes;
+    'track-list': JSXElements.TrackListAttributes;
     }
   }
 
@@ -104,6 +117,11 @@ declare global {
     export interface MyAppAttributes extends HTMLAttributes {
 
     }
+
+    export interface TrackListAttributes extends HTMLAttributes {
+      'onPlaying'?: (event: CustomEvent) => void;
+      'tracks'?: any;
+    }
   }
 
   interface HTMLElementTagNameMap {
@@ -111,6 +129,7 @@ declare global {
     'app-profile': HTMLAppProfileElement
     'fave-page': HTMLFavePageElement
     'my-app': HTMLMyAppElement
+    'track-list': HTMLTrackListElement
   }
 
   interface ElementTagNameMap {
@@ -118,6 +137,7 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'fave-page': HTMLFavePageElement;
     'my-app': HTMLMyAppElement;
+    'track-list': HTMLTrackListElement;
   }
 }
 declare global { namespace JSX { interface StencilJSX {} } }

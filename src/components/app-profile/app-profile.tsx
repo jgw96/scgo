@@ -49,7 +49,6 @@ export class AppProfile {
               .then((sub: PushSubscription) => {
                 // our user is now subscribed
                 // lets reflect this in our UI
-                console.log('web push subscription: ', sub);
                 this.notify = true;
               });
           }

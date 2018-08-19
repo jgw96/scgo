@@ -1,0 +1,7 @@
+track-list .track ion-label {
+  white-space: normal;
+}
+
+track-list .track ion-label p {
+  white-space: nowrap;
+}
