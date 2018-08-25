@@ -15,7 +15,15 @@ export const config: Config = {
           'build/app/svg/*.js',
           'build/app/*.es5.js'
         ]
-      }
+      },
+    }
+  ],
+  copy: [
+    {
+      src: 'helpers/worker-dom/'
+    },
+    {
+      src: 'hello-world.js'
     }
   ],
   globalScript: 'src/global/app.ts',

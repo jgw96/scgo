@@ -24,7 +24,6 @@ export class FavePage {
 
   async play(track?, url?: string) {
     this.playing = false;
-    ('clicked');
 
     if (url) {
       (url);
@@ -37,13 +36,11 @@ export class FavePage {
 
       this.audioElement.addEventListener('loadeddata', async () => {
         if (this.audioElement.readyState >= 3) {
-          ('playing');
           await this.audioElement.play();
           this.playing = true;
         }
       });
     } else {
-      ('resuming')
       // if not were paused and just play
       await this.audioElement.play();
       this.playing = true;
@@ -51,13 +48,11 @@ export class FavePage {
   }
 
   async pause() {
-    ('pause clicked');
     await this.audioElement.pause();
     this.playing = false;
   }
 
   next() {
-    ('hello world');
     const randomNumber = Math.random();;
     this.play(this.faveTracks[Math.floor(randomNumber * this.faveTracks.length)], this.faveTracks[Math.floor(randomNumber * this.faveTracks.length)].stream_url);
   }
@@ -73,7 +68,7 @@ export class FavePage {
         </ion-toolbar>
       </ion-header>,
       <ion-content>
-        <ion-list>
+        <ul>
           {
             this.faveTracks.map((track) => {
               return (
@@ -90,27 +85,27 @@ export class FavePage {
               )
             })
           }
-        </ion-list>
+        </ul>
 
         <audio ref={(el: HTMLAudioElement) => this.audioElement = el} src={`${this.streamUrl}?client_id=a7Ucuq0KY8Ksn8WzBG6wj4x6pcId6BpU`}></audio>
       </ion-content>,
 
       <ion-footer>
-        <ion-toolbar>
+        <ion-toolbar color="primary">
           <p id='trackTitle'>{this.currentPlayingTrack.title}</p>
           <ion-buttons slot="end">
             <ion-button fill="clear" icon-only>
-              <ion-icon color="primary" name="skip-backward"></ion-icon>
+              <ion-icon aria-label="skip backward icon" name="skip-backward"></ion-icon>
             </ion-button>
             {this.playing ?
               <ion-button onClick={() => this.pause()} fill="clear">
-                <ion-icon color="primary" name="pause"></ion-icon>
+                <ion-icon aria-label="pause icon" name="pause"></ion-icon>
               </ion-button>
               : <ion-button onClick={() => this.play()} fill="clear" icon-only>
-                <ion-icon color="primary" name="play"></ion-icon>
+                <ion-icon aria-label="start icon"></ion-icon>
               </ion-button>}
             <ion-button onClick={() => this.next()} fill="clear" icon-only>
-              <ion-icon color="primary" name="skip-forward"></ion-icon>
+              <ion-icon aria-label="Skip forward icon" name="skip-forward"></ion-icon>
             </ion-button>
           </ion-buttons>
         </ion-toolbar>

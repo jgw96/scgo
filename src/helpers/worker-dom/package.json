@@ -1,0 +1,132 @@
+{
+  "_from": "@ampproject/worker-dom",
+  "_id": "@ampproject/worker-dom@0.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-LD8FN2vjcJ2w6hZRse3tHGglI6Oor53tmdh4WBTp80QODRYsqMd/vZVSDUyzSyGSmy7Uc/z1RqrasK98cK0k8w==",
+  "_location": "/@ampproject/worker-dom",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@ampproject/worker-dom",
+    "name": "@ampproject/worker-dom",
+    "escapedName": "@ampproject%2fworker-dom",
+    "scope": "@ampproject",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@ampproject/worker-dom/-/worker-dom-0.1.0.tgz",
+  "_shasum": "0e4f7e6b99bb2c7eedab0b734f067faa5303c09e",
+  "_spec": "@ampproject/worker-dom",
+  "_where": "/Users/justinwillis/Projects/ScGo",
+  "author": {
+    "name": "The AMP HTML Authors"
+  },
+  "bugs": {
+    "url": "https://github.com/ampproject/worker-dom/issues"
+  },
+  "bundleDependencies": false,
+  "bundlesize": [
+    {
+      "path": "./dist/worker.mjs",
+      "compression": "brotli",
+      "maxSize": "6 kB"
+    },
+    {
+      "path": "./dist/worker.safe.mjs",
+      "compression": "brotli",
+      "maxSize": "7 kB"
+    },
+    {
+      "path": "./dist/index.mjs",
+      "compression": "brotli",
+      "maxSize": "2 kB"
+    },
+    {
+      "path": "./dist/index.safe.mjs",
+      "compression": "brotli",
+      "maxSize": "7 kB"
+    }
+  ],
+  "dependencies": {
+    "dompurify": "1.0.7"
+  },
+  "deprecated": false,
+  "description": "A facsimile of a modern DOM implementation intended to run in a Web Worker.",
+  "devDependencies": {
+    "@ampproject/rollup-plugin-closure-compiler": "0.6.1",
+    "@babel/cli": "v7.0.0-rc.1",
+    "@babel/core": "v7.0.0-rc.1",
+    "@babel/plugin-proposal-class-properties": "v7.0.0-rc.1",
+    "@babel/plugin-proposal-object-rest-spread": "v7.0.0-rc.1",
+    "@babel/preset-env": "v7.0.0-rc.1",
+    "acorn": "5.7.1",
+    "ava": "0.25.0",
+    "babel-plugin-minify-replace": "0.4.3",
+    "babel-plugin-transform-remove-console": "6.9.4",
+    "bundlesize": "0.17.0",
+    "esm": "3.0.76",
+    "husky": "1.0.0-rc.13",
+    "lint-staged": "7.2.2",
+    "magic-string": "0.25.0",
+    "polka": "0.4.0",
+    "prettier": "1.14.2",
+    "rimraf": "2.6.2",
+    "rollup": "0.64.1",
+    "rollup-plugin-babel": "4.0.0-beta.7",
+    "rollup-plugin-node-resolve": "3.3.0",
+    "serve-static": "1.13.2",
+    "tslint": "5.11.0",
+    "typescript": "3.0.1"
+  },
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "files": [
+    "index.mjs",
+    "index.safe.mjs",
+    "index.js",
+    "index.safe.js",
+    "worker.mjs",
+    "worker.safe.mjs",
+    "worker.js",
+    "worker.safe.js"
+  ],
+  "homepage": "https://github.com/ampproject/worker-dom#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test && npm run size"
+    }
+  },
+  "license": "Apache-2.0",
+  "lint-staged": {
+    "*.ts": [
+      "prettier --config config/.prettierrc --write",
+      "git add"
+    ]
+  },
+  "main": "dist/index.js",
+  "name": "@ampproject/worker-dom",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ampproject/worker-dom.git"
+  },
+  "scripts": {
+    "build": "MINIFY_BUNDLE=true npm run ~rollup",
+    "debug": "node -r esm demo/server.mjs",
+    "lint": "tslint -c config/tslint.json -p src/worker-thread/ & tslint -c config/tslint.json -p src/main-thread/",
+    "predebug": "DEBUG_BUNDLE=true npm run ~rollup",
+    "pretest": "rimraf output && tsc -p config/tsconfig.test.worker-thread.json & tsc -p config/tsconfig.test.json & tsc -p config/tsconfig.test.main-thread.json & wait",
+    "pre~rollup": "rimraf output dist && tsc -p config/tsconfig.build.worker-thread.json & tsc -p config/tsconfig.build.main-thread.json",
+    "size": "npm run build && bundlesize",
+    "test": "ava -v output/test/**/*.js",
+    "~rollup": "rollup --config config/rollup.config.js"
+  },
+  "version": "0.1.0"
+}

@@ -20,6 +20,29 @@
 @import "~@ionic/core/css/flex-utils.css";
 
 /*
+  Global Overrides
+*/
+
+ion-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.searchbar-input.sc-ion-searchbar-md {
+  box-shadow: none;
+}
+
+.sc-ion-searchbar-md-h {
+  color: white;
+  --background: #f99d62;
+  --color-icon: white;
+}
+
+ul {
+  padding: 0;
+}
+
+/*
   The CSS Variables below can be used to theme your app.
   For more info on CSS variables check out:
   https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables

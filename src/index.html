@@ -18,19 +18,57 @@
   <link href="/build/app.css" rel="stylesheet">
   <script src="/build/app.js"></script>
 
-  <link rel="apple-touch-icon" href="/assets/icon/icon.png">
+  <link rel="apple-touch-icon" href="/assets/icon/512.png">
   <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico">
   <link rel="manifest" href="/manifest.json">
+
+  <link rel="preconnect" href="https://i1.sndcdn.com">
+
+  <!--<script src="./helpers/worker-dom/dist/index.mjs" type="module"></script>
+  <script src="./helpers/worker-dom/dist/index.js" nomodule defer></script>-->
 
 </head>
 
 <body>
 
-  <my-app></my-app>
+  <my-app src="./hello-world.js"></my-app>
 
   <noscript>
     This app requires JavaScript to function.
   </noscript>
+
+  <!--<script type="module">
+    import { upgradeElement } from './helpers/worker-dom/dist/index.mjs';
+    upgradeElement(document.querySelector('ion-img'), './helpers/worker-dom/dist/worker.mjs');
+    console.log('running in a worker');
+  </script>
+  <script nomodule async=false defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      MainThread.upgradeElement(document.querySelector('my-app'), './helpers/worker-dom/dist/worker.mjs');
+    }, false);
+  </script>-->
+
+  <script>
+    window.requestIdleCallback =
+      window.requestIdleCallback ||
+      function (cb) {
+        var start = Date.now();
+        return setTimeout(function () {
+          cb({
+            didTimeout: false,
+            timeRemaining: function () {
+              return Math.max(0, 50 - (Date.now() - start));
+            }
+          });
+        }, 1);
+      }
+
+    window.cancelIdleCallback =
+      window.cancelIdleCallback ||
+      function (id) {
+        clearTimeout(id);
+      }
+  </script>
 
 </body>
 

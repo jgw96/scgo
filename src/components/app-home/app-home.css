@@ -14,3 +14,27 @@ app-home #trackTitle {
   width: 80%;
   margin-left: 10px;
 }
+
+app-home #moreInfo {
+  padding-left: 25px;
+  padding-bottom: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  transform: translateY(240px);
+  box-shadow: 0 -3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  position: absolute;
+  background: white;
+  bottom: 54px;
+  left: 0;
+  right: 0;
+}
+
+app-home #moreInfo h5 {
+  color: var(--ion-color-primary);
+}
+
+app-home #moreInfo ion-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}

@@ -5,3 +5,7 @@ track-list .track ion-label {
 track-list .track ion-label p {
   white-space: nowrap;
 }
+
+track-list ion-buttons {
+  z-index: 0 !important;
+}

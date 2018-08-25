@@ -16,6 +16,7 @@ export class TrackList {
   @Event() playing: EventEmitter;
 
   async play(track?, url?: string) {
+    console.log(track, url);
     this.playing.emit({ track, url });
   }
 
@@ -51,7 +52,7 @@ export class TrackList {
         return (
           <ion-item key={track.id} class="track">
             <ion-thumbnail onClick={() => this.play(track, track.stream_url)} slot="start">
-              <ion-img src={track.artwork_url} alt={`${track.name} album artwork`}></ion-img>
+              <ion-img src={track.artwork_url} alt={`${track.title} album artwork`}></ion-img>
             </ion-thumbnail>
 
             <ion-label onClick={() => this.play(track, track.stream_url)}>
@@ -60,8 +61,9 @@ export class TrackList {
             </ion-label>
 
             <ion-buttons slot="end">
-              <ion-button color="primary" onClick={() => this.fave(track)} icon-only fill="clear">
-                <ion-icon name="star-outline"></ion-icon>
+              <ion-button title="favorite button" class="likeButton" color="primary" onClick={() => this.fave(track)} icon-only fill="clear">
+                <ion-icon aria-label="favorite icon" name="star-outline">
+                </ion-icon>
               </ion-button>
             </ion-buttons>
           </ion-item>
@@ -70,9 +72,9 @@ export class TrackList {
     });
 
     return (
-      <ion-list>
+      <ul>
         {tracks}
-      </ion-list>
+      </ul>
     )
   }
 }
