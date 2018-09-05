@@ -21,9 +21,6 @@ export const config: Config = {
   copy: [
     {
       src: 'helpers/worker-dom/'
-    },
-    {
-      src: 'hello-world.js'
     }
   ],
   globalScript: 'src/global/app.ts',

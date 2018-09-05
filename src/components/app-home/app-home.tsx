@@ -1,8 +1,8 @@
-import { Component, Element, State, Prop, Listen } from '@stencil/core';
-
+import { Component, Element, Listen, Prop, State } from '@stencil/core';
 import { getTracks, searchTracks } from '../../helpers/api';
 
-// declare var MediaMetadata: any;
+
+declare var MediaMetadata: any;
 
 @Component({
   tag: 'app-home',
@@ -40,14 +40,14 @@ export class AppHome {
   async play(track?, url?: string) {
     this.playing = false;
 
-    this.setUpMeta(track);
-
     if (url) {
       // if we have a new url switch to it
       this.streamUrl = url;
 
       if (track) {
-        this.currentPlayingTrack = track
+        this.currentPlayingTrack = track;
+        this.setUpMeta(track);
+        this.setUpWindowsToast(track);
       }
 
       this.setUpListeners();
@@ -61,14 +61,54 @@ export class AppHome {
   setUpMeta(track) {
     console.log(track);
 
-    /*if ((navigator as any).mediaSession) {
+    if ((navigator as any).mediaSession) {
       (navigator as any).mediaSession.metadata = new MediaMetadata({
         title: track.title,
+        artist: track.user.username,
         artwork: [
           { src: track.artwork_url, type: 'image/jpg' },
         ]
       });
-    }*/
+
+      (navigator as any).mediaSession.setActionHandler('play', this.play(track));
+      (navigator as any).mediaSession.setActionHandler('pause', this.pause());
+      (navigator as any).mediaSession.setActionHandler('previoustrack', this.play(track));
+      (navigator as any).mediaSession.setActionHandler('nexttrack', this.next());
+    };
+  }
+
+  setUpWindowsToast(track) {
+    if ((window as any).Windows) {
+      const toastNotificationXmlTemplate =
+        `<toast>
+            <visual>
+                <binding template="ToastGeneric">
+                    <image placement="" src=""/>
+                    <text hint-maxLines="1"></text>
+                    <text></text>
+                </binding>
+            </visual>
+        </toast>`;
+
+      const imageUrl = track.artwork_url;
+
+      // Create ToastNotification as XML Doc
+      const toastXml = new (window as any).Windows.Data.Xml.Dom.XmlDocument();
+      toastXml.loadXml(toastNotificationXmlTemplate);
+
+      // Update the background image
+      const images = toastXml.getElementsByTagName('image');
+      images[0].setAttribute('src', imageUrl);
+
+      // Set notification texts
+      const textNodes = toastXml.getElementsByTagName('text');
+      textNodes[0].innerText = `Now playing ${track.title}`;
+      textNodes[1].innerText = track.description;
+
+      const toast = new (window as any).Windows.UI.Notifications.ToastNotification(toastXml);
+      (window as any).Windows.UI.Notifications.ToastNotificationManager.createToastNotifier().show(toast);
+      (window as any).Windows.UI.Notifications.ToastNotificationHistory.clear();
+    };
   }
 
   setUpListeners() {
@@ -110,7 +150,7 @@ export class AppHome {
     if (this.opened === false || !this.opened) {
       const keyframes = [
         {
-          transform: "translateY(240px)"
+          transform: "translateY(300px)"
         },
         {
           transform: "translateY(0px)"
@@ -135,7 +175,7 @@ export class AppHome {
     return [
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title mode="ios">SC Go</ion-title>
+          <ion-title>SC Go</ion-title>
 
           <ion-buttons slot="end">
             <ion-button onClick={() => this.goToFave()} icon-only fill="clear">
@@ -177,7 +217,7 @@ export class AppHome {
           </ion-buttons>
           <p id='trackTitle'>{this.currentPlayingTrack.title}</p>
           <ion-buttons slot="end">
-            <ion-button fill="clear" icon-only>
+            <ion-button onClick={() => this.play()} fill="clear" icon-only>
               <ion-icon aria-label="skip backward icon" name="skip-backward"></ion-icon>
             </ion-button>
             {this.playing ?

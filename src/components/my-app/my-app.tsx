@@ -30,6 +30,17 @@ export class MyApp {
     window.location.reload();
   }
 
+  componentDidLoad() {
+    if ((window as any).Windows && (window as any).Windows.UI.ViewManagement.ApplicationView) {
+      const titleBar = (window as any).Windows.UI.ViewManagement.ApplicationView.getForCurrentView().titleBar;
+      titleBar.backgroundColor = { a: 255, r: 245, g: 124, b: 0 };
+      titleBar.foregroundColor = { a: 255, r: 255, g: 255, b: 255 };
+      titleBar.inactiveBackgroundColor = { a: 255, r: 245, g: 124, b: 0 };
+      titleBar.inactiveForegroundColor = { a: 255, r: 245, g: 124, b: 0 };
+      titleBar.buttonBackgroundColor = { a: 255, r: 245, g: 124, b: 0 };
+    }
+  }
+
   render() {
     return (
       <ion-app>

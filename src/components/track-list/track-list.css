@@ -9,3 +9,15 @@ track-list .track ion-label p {
 track-list ion-buttons {
   z-index: 0 !important;
 }
+
+track-list ul {
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 1200px) {
+  track-list ul {
+    margin-left: 18rem;
+    margin-right: 18rem;
+  }
+}

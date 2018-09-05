@@ -6,41 +6,32 @@
   global font family css then you can comment out the typography.css import.
 */
 
-/** Basic CSS for Ionic Apps */
+@import "~@ionic/core/css/core.css";
+
+
+
+/** Basic CSS for apps built with Ionic */
+
 @import "~@ionic/core/css/normalize.css";
+
 @import "~@ionic/core/css/structure.css";
+
 @import "~@ionic/core/css/typography.css";
-@import "~@ionic/core/css/colors.css";
+
+
 
 /** Optional CSS utils that can be commented out */
+
 @import "~@ionic/core/css/padding.css";
+
 @import "~@ionic/core/css/float-elements.css";
+
 @import "~@ionic/core/css/text-alignment.css";
+
 @import "~@ionic/core/css/text-transformation.css";
+
 @import "~@ionic/core/css/flex-utils.css";
 
-/*
-  Global Overrides
-*/
-
-ion-title {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.searchbar-input.sc-ion-searchbar-md {
-  box-shadow: none;
-}
-
-.sc-ion-searchbar-md-h {
-  color: white;
-  --background: #f99d62;
-  --color-icon: white;
-}
-
-ul {
-  padding: 0;
-}
 
 /*
   The CSS Variables below can be used to theme your app.

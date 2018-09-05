@@ -20,7 +20,7 @@ app-home #moreInfo {
   padding-bottom: 25px;
   padding-right: 25px;
   padding-top: 10px;
-  transform: translateY(240px);
+  transform: translateY(300px);
   box-shadow: 0 -3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: absolute;
   background: white;
@@ -37,4 +37,11 @@ app-home #moreInfo ion-button {
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+@media(min-width: 1100px) {
+  app-home #moreInfo {
+    margin-left: 20rem;
+    margin-right: 20rem;
+  }
 }

@@ -68,24 +68,7 @@ export class FavePage {
         </ion-toolbar>
       </ion-header>,
       <ion-content>
-        <ul>
-          {
-            this.faveTracks.map((track) => {
-              return (
-                <ion-item onClick={() => this.play(track, track.stream_url)} key={track.id} class="track">
-                  <ion-thumbnail slot="start">
-                    <ion-img src={track.artwork_url || "https://images.all-free-download.com/images/graphiclarge/geometric_abstract_pattern_colorful_flat_circles_decoration_6835129.jpg"}></ion-img>
-                  </ion-thumbnail>
-
-                  <ion-label>
-                    <h2>{track.title}</h2>
-                    <p>{track.description || "No Description Available"}</p>
-                  </ion-label>
-                </ion-item>
-              )
-            })
-          }
-        </ul>
+        <track-list tracks={this.faveTracks}></track-list>
 
         <audio ref={(el: HTMLAudioElement) => this.audioElement = el} src={`${this.streamUrl}?client_id=a7Ucuq0KY8Ksn8WzBG6wj4x6pcId6BpU`}></audio>
       </ion-content>,
@@ -102,7 +85,7 @@ export class FavePage {
                 <ion-icon aria-label="pause icon" name="pause"></ion-icon>
               </ion-button>
               : <ion-button onClick={() => this.play()} fill="clear" icon-only>
-                <ion-icon aria-label="start icon"></ion-icon>
+                <ion-icon name="play" aria-label="start icon"></ion-icon>
               </ion-button>}
             <ion-button onClick={() => this.next()} fill="clear" icon-only>
               <ion-icon aria-label="Skip forward icon" name="skip-forward"></ion-icon>
